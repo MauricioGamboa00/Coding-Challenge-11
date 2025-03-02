@@ -38,7 +38,7 @@ class Borrower {
     }
 
     returnBook(book) {
-     this.borrowedBooks = this.borrowedBooks.filter(b => b !== book); // Removing Book from borrowed Books array
+     this.borrowedBooks = this.borrowedBooks.filter(book => book !== book); // Removing Book from borrowed Books array
     }
 }; // Created Borrower Class
 
@@ -48,8 +48,7 @@ borrower1.borrowBook("The Great Gatsby"); // Borrower 1 borrowing Great Gatsby
 console.log(borrower1.borrowedBooks); // Expected output: ["The Great Gatsby"]
 
 borrower1.returnBook("The Great Gatsby"); // Borrower 1 returning the Great Gatsby
-
-console.log(borrower1.borrowedBooks); // Expected output: []
+console.log(borrower1.borrowedBooks.map(book => book.title)); // Expected Output []
 
 // Task 3 Creating a Library Class
 
@@ -125,3 +124,4 @@ library.returnBook(201, 123456); // Returns a book based on borrower Id and book
 console.log(book1.getDetails()); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
 
 console.log(borrower1.borrowedBooks); // Expected output: []
+
