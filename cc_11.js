@@ -76,7 +76,7 @@ class Library {
         if (book && borrower) {
         if (book.copies > 0) {
             book.updateCopies(-1); // Updated Book Copies Available
-            borrower.borrowBook(book); // Borrows the book that is selected
+            borrower.borrowBook(book.title); // Borrows the book that is selected
         }
         else {
             console.log("No Copies of this book are available")
@@ -95,7 +95,7 @@ class Library {
             if (book) {
                 book.updateCopies(1); // Updated Copies Availble for a book
                 if (borrower){
-                    borrower.returnBook(book); // Returns a book
+                    borrower.returnBook(book.title); // Returns a book
                 }
             }
         }
