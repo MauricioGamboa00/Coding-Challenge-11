@@ -38,7 +38,7 @@ class Borrower {
     }
 
     returnBook(book) {
-     this.borrowedBooks = this.borrowedBooks.filter(book => book !== book); // Removing Book from borrowed Books array
+     this.borrowedBooks = this.borrowedBooks.filter(b => b !== book); // Removing Book from borrowed Books array
     }
 }; // Created Borrower Class
 
