@@ -76,7 +76,7 @@ class Library {
         if (book && borrower) {
         if (book.copies > 0) {
             book.updateCopies(-1); // Updated Book Copies Available
-            borrower.borrowBook(book.title); // Borrows the book that is selected
+            borrower.borrowBook(book); // Borrows the book that is selected
         }
         else {
             console.log("No Copies of this book are available")
@@ -85,6 +85,19 @@ class Library {
         console.log("Book Not Found")
         
     }
+        }
+
+        // Task 5 Modifications
+        
+        returnBook(borrowerId, isbn) {
+            const borrower = this.borrowers.find(borrower => borrower.borrowerId === borrowerId); // Finds a borrower based on their Id
+            const book = this.books.find(book => book.isbn === isbn); // Finds a book based on its Isbn
+            if (book) {
+                book.updateCopies(1); // Updated Copies Availble for a book
+                if (borrower){
+                    borrower.returnBook(book); // Returns a book
+                }
+            }
         }
     
 
@@ -104,3 +117,11 @@ library.lendBook(201, 123456); // Lends the specified book based on Isbn to borr
 console.log(book1.getDetails()); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3"
 
 console.log(borrower1.borrowedBooks); // Expected output: ["The Great Gatsby"]
+
+// Task 5 Implementing Book Returns
+
+library.returnBook(201, 123456); // Returns a book based on borrower Id and book Isbn
+
+console.log(book1.getDetails()); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+
+console.log(borrower1.borrowedBooks); // Expected output: []
