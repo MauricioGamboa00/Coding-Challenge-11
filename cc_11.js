@@ -64,9 +64,43 @@ class Library {
     listBooks(){
         this.books.map(book => console.log(book.getDetails())); // Lists Book Details
     }
+    // Task 4 Modifications
+
+    addBorrower(borrower) {
+        this.borrowers.push(borrower); // Adds a borrower to borrower array
+    }
+
+    lendBook(borrowerId, isbn) {
+        const book = this.books.find(book => book.isbn === isbn); // Finds a book bases on its Isbn
+        const borrower = this.borrowers.find(borrower => borrower.borrowerId === borrowerId); // Finds Borrower bases on their Id
+        if (book && borrower) {
+        if (book.copies > 0) {
+            book.updateCopies(-1); // Updated Book Copies Available
+            borrower.borrowBook(book.title); // Borrows the book that is selected
+        }
+        else {
+            console.log("No Copies of this book are available")
+        }
+    } else {
+        console.log("Book Not Found")
+        
+    }
+        }
+    
+
 }; // Created Library Class
 
 const library = new Library(); // Created a new Library Instance
 library.addBook(book1); // Added book one to the library
 
 library.listBooks(); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+
+// Task 4 Implementing Book Borrowing
+
+library.addBorrower(borrower1)
+
+library.lendBook(201, 123456); // Lends the specified book based on Isbn to borrower based on their Id
+
+console.log(book1.getDetails()); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3"
+
+console.log(borrower1.borrowedBooks); // Expected output: ["The Great Gatsby"]
